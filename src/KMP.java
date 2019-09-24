@@ -13,15 +13,13 @@ public class KMP {
         int j = 0;
 
         for (i = 1; i < facteur.length; i++) {
-            System.out.println("i="+i);
             if (!lettres.contains(facteur[i])) {
                 lettres.add(facteur[i]);
                 res[i] = 0;
             } else if (facteur[i] == facteur[0]) {
                 lettres.add(facteur[i]);
                 res[i] = -1;
-                System.out.println("moins 1 a");
-                for (j = 1; /*j < i && */(i + j) < facteur.length; j++) {
+                for (j = 1; (i + j) < facteur.length; j++) {
                     if (facteur[i + j] == facteur[j] && facteur[i + j] == facteur[0])
                         res[i + j] = -1;
                     else if (facteur[i + j] == facteur[j])
@@ -29,7 +27,6 @@ public class KMP {
                     else {
                         if (facteur[i + j] == facteur[0]) {
                             i = i + j - 1;
-                            System.out.println("moins 1 b");
                             break;
                         } else {
                             res[i + j] = j;
@@ -39,10 +36,8 @@ public class KMP {
                     }
                 }
 
-                System.out.println("arrivé.");
                 i=i+j-1;
             }
-            System.out.println("res["+(i-1)+"]="+res[i-1]);
         }
         res[res.length-1]=0;
 
